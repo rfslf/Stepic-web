@@ -12,6 +12,11 @@ admin.autodiscover()
 #   url(r'^new/.*', 'test', name='new'),                                         
 #)  
 
+#urlpatterns = [
+#    url(r'^', include("qa.urls")),
+#    url(r'^admin/', admin.site.urls),
+#]
+
 urlpatterns = [  
     url(r'^$', 'qa.views.test'),
     url(r'^login/.*$', 'qa.views.test'),
