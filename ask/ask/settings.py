@@ -31,8 +31,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = (
 #    'django.contrib.admin',
-#    'django.contrib.auth',
-#    'django.contrib.contenttypes',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
 #    'django.contrib.sessions',
 #    'django.contrib.messages',
 #    'django.contrib.staticfiles',
@@ -58,8 +58,13 @@ WSGI_APPLICATION = 'ask.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': os.path.join(BASE_DIR, 'db.mysql'),
+        'NAME': 'askweb',
+#        'USER': 'box',
+#        'PASSWORD': '123',
+#        'HOST': 'localhost',
+#        'PORT': '', 
     }
 }
 
