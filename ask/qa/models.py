@@ -1,11 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-#class QuestionManager():
-#    def new:
-#        return
-#    def popular:
-#        return
+class QuestionManager():
+    def new():
+        return
+    def popular():
+        return
 
 class Question(models.Model):
     title = models.CharField(max_length=255)
@@ -14,7 +14,7 @@ class Question(models.Model):
     rating = models.IntegerField()
     author = models.ForeignKey(User)
     likes = models.ManyToManyField(User, related_name='likes_set') 
-#    objects=QuestionManager()
+    objects=QuestionManager()
 #    class Meta:
 #        db_table = 'question'
         
