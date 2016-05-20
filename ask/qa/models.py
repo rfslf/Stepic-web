@@ -1,11 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class QuestionManager(models.Model):
+class QuestionManager(models.Manager):
     def new(self):
-        return
+        return self.filter(added_at = datetime.now())
     def popular(self):
-        return
+        pop = self.order_by('rating')
+        return pop.[0:5]
 
 class Question(models.Model):
     title = models.CharField(max_length=255)
