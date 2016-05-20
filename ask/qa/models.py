@@ -15,8 +15,8 @@ class Question(models.Model):
     author = models.ForeignKey(User)
     likes = models.ManyToManyField(User, related_name='likes_set') 
     objects=QuestionManager()
-#    class Meta:
-#        db_table = 'question'
+    class Meta:
+        db_table = 'question'
         
 class Answer(models.Model):
     text = models.TextField()
@@ -24,5 +24,5 @@ class Answer(models.Model):
 #    question = models.OneToOneField(AnswerQuestion)
     question = models.ForeignKey(Question)
     author = models.ForeignKey(User)
-#    class Meta:
-#        db_table = 'answer'
+    class Meta:
+        db_table = 'answer'
