@@ -23,8 +23,8 @@ class Answer(models.Model):
     text = models.TextField()
 #    added_at = models.DateField(auto_now_add=True)
     added_at = models.DateField()
-    question = models.OneToOneField(AnswerQuestion)
-#    question = models.ForeignKey(Question)
+#    question = models.OneToOneField(AnswerQuestion)
+    question = models.ForeignKey(Question)
     author = models.ForeignKey(User)
 #   class Meta:
 #       db_table = 'answer'
