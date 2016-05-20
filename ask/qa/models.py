@@ -6,7 +6,7 @@ class QuestionManager(models.Manager):
         return self.filter(added_at = datetime.now())
     def popular(self):
         pop = self.order_by('rating')
-        return pop.[0:5]
+        return pop[0:5]
 
 class Question(models.Model):
     title = models.CharField(max_length=255)
