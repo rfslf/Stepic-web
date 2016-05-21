@@ -39,7 +39,7 @@ def show_question(request, q_id):
         raise Http404
     return render(request, 'qa/question.html', {
         'question' : question,
-#        'answer' : ,
+#       'answer' : answer.question_set.all(),
         'title' : question.title,
         'text' : question.text,
         })
