@@ -35,9 +35,8 @@ def show_question(request, q_id):
         question = Question.objects.get(id = q_id)
     except Question.DoesNotExist:
         raise Http404
-    return HttpResponse('OK')
-#    return render(request, 'qa/question.html', {
-#        'question' : question,
-#        'title' : question.title,
-#        'text' : question.text,
-#         })
+    return render(request, 'qa/question.html', {
+        'question' : question,
+        'title' : question.title,
+        'text' : question.text,
+        })
