@@ -20,7 +20,7 @@ class Question(models.Model):
         return self.title
     def get_url(self):
         return reverse('question', kwargs={"id": self.id})
-      
+    
 class Answer(models.Model):
     text = models.TextField()
 #    added_at = models.DateTimeField(auto_now_add=True)
@@ -42,3 +42,5 @@ class AskForm(forms.Form):
         question.author_id = 1
         question.save()
         return question
+    def get_url(self):
+        return reverse('single-question-view', kwargs={'qa_id': self.id})
