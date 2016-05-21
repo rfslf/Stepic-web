@@ -14,7 +14,7 @@ def allq(request):
     paginator = Paginator(all_question, 10)
     
     page = paginator.page(page)
-    return render(request, 'ask/question.html', {
+    return render(request, 'qa/question.html', {
         'question' : page.object_list,
         'paginator': paginator, 'page' = page,
          })
@@ -25,7 +25,7 @@ def popular(request):
     paginator = Paginator(all_question, 10)
     
     page = paginator.page(page)
-    return render(request, 'ask/question.html', {
+    return render(request, 'qa/question.html', {
         'question' : page.object_list,
         'paginator': paginator, 'page' = page,
          })
@@ -35,7 +35,7 @@ def show_question(request, q_id):
         question = Question.objects.get(id = q_id)
     except Question.DoesNotExist:
         raise Http404
-    return render(request, 'ask/question.html', {
+    return render(request, 'qa/question.html', {
         'question' : question,
         'title' : question.title,
         'text' : question.text,
