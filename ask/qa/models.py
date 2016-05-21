@@ -18,7 +18,7 @@ class Question(models.Model):
     likes = models.ManyToManyField(User, related_name='likes_set') 
     def __unicode__(self):
         return self.title
-    def get_abs_url(self):
+    def get_url(self):
         return reverse('question', kwargs={"id": self.id})
       
 class Answer(models.Model):
