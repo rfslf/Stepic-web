@@ -7,7 +7,8 @@ def test(request, *args, **kwargs):
     return HttpResponse('OK')
 # Create your views here.
 def allq(request):
-    
+
+def popular(request):  
 
 def show_question(request, q_id):
     try:
