@@ -15,7 +15,7 @@ def allq(request):
     paginator.baseurl = '/?page='
     page = paginator.page(page)
     return HttpResponse('NOK')
-#    return render(request, 'qa/question.html', {
+#    return render(request, 'qa/questions.html', {
 #        'question' : page.object_list,
 #        'paginator': paginator, 'page' = page,
 #         })
