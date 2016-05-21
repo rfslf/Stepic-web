@@ -8,10 +8,10 @@ def test(request, *args, **kwargs):
 
 def allq(request):
     all_question = Question.objects.filter(is_published=True)
-    all_questions = Question.objects.order_by('-id')
+    all_questions = all_question.order_by('-id')
     page = request.GET.get('page', 1)
 #    limit = request.GET.get('limit', 10)
-    paginator = Paginator(all_question, 10)
+    paginator = Paginator(all_questions, 10)
     paginator.baseurl = '/?page='
     page = paginator.page(page)
     return HttpResponse('NOK')
@@ -23,7 +23,7 @@ def allq(request):
 def popular(request):
     pops=Question.objects.order_by('rating')
     page = request.GET.get('page', 1)
-    paginator = Paginator(all_question, 10)
+    paginator = Paginator(pops, 10)
     paginator.baseurl = '/?page='
     page = paginator.page(page)
     return HttpResponse('POK')
