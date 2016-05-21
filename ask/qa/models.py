@@ -1,12 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class QuestionManager(models.Manager):
-    def new(self):
-        return self.filter(added_at = datetime.now())
-    def popular(self):
-        pop = self.order_by('rating')
-        return pop[0:5]
+#class QuestionManager(models.Manager):
+#    def new(self):
+#        return self.filter(added_at = datetime.now())
+#    def popular(self):
+#        pop = self.order_by('rating')
+#        return pop[0:5]
 
 class Question(models.Model):
     title = models.CharField(max_length=255)
@@ -16,7 +16,7 @@ class Question(models.Model):
     rating = models.IntegerField(default=0)
     author = models.ForeignKey(User)
     likes = models.ManyToManyField(User, related_name='likes_set') 
-    objects = QuestionManager()
+#    objects = QuestionManager()
 #    class Meta:
 #        db_table = 'question'
         
