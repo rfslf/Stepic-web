@@ -1,16 +1,20 @@
-<h1>{{question.title}}</h1>
-<p>{{question.text}}</p>
-
-{% for answer in answers %}
-    <div>{{answer.text}}</div>
+<body>
+{% for question in questions %}
+<h1>{{ question.title }}</h1>
+<a href="{{ question.get_url }}">{{ question }}</a>
 {% endfor %}
 
-<form method="post" action="/answer/">
-                {% csrf_token %}
-		{% for field in form%}
-                  <div>
-                    {{field}}
-                  </div> 
-                {% endfor %}
-        <input type="submit" value="OK">
-</form>
+<nav><ul class="pagination">
+{% for p in paginator.page_range %}
+ {% if p == page.number %}
+ <li class="active">
+ {% else %}
+ <li>
+ {% endif %}
+  <a href="{{ paginator.baseurl }}{{ p }}">
+  {{ p }}</a>
+</li>
+{% endfor %}
+</ul></nav>
+</body>
+</html>
