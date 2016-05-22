@@ -1,0 +1,16 @@
+<h1>{{question.title}}</h1>
+<p>{{question.text}}</p>
+
+{% for answer in answers %}
+    <div>{{answer.text}}</div>
+{% endfor %}
+
+<form method="post" action="/answer/">
+                {% csrf_token %}
+		{% for field in form%}
+                  <div>
+                    {{field}}
+                  </div> 
+                {% endfor %}
+        <input type="submit" value="OK">
+</form>
