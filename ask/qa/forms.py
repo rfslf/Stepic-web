@@ -18,3 +18,18 @@ class AskForm(forms.Form):
         question.author = user
         question.save()
         return question
+
+class AnswerForm(forms.Form):
+    text = forms.CharField(widget=forms.Textarea)
+    question = forms.IntegerField(widget=forms.HiddenInput())
+
+    def clean(self):
+        pass 
+
+    def save(self, user):
+        text = self.cleaned_data['text']
+        question = models.Question.objects.get(id=self.cleaned_data['question'])
+        answer = models.Answer(text=text, question=question)
+        answer.author = user
+        answer.save()
+        return answer
