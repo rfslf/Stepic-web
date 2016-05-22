@@ -59,7 +59,7 @@ def show_question(request, q_id):
         'question' : question,
         'answer' :  Answer.objects.filter(id=id_question).order_by('-added_ad')[:],
 #        'newanswer': AnswerForm({'question': int(id_question), 'author': request.user}),
-#        'title' : question.title,
+        'title' : question.title,
 #        'text' : question.text,
         })
 
