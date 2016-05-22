@@ -1,47 +1,66 @@
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, , HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_GET
 from django.core.paginator import Paginator
+from models import Question, Answer
+#from functions import pagepag
+#from forms import AskForm, AnswerForm, SignupForm, LoginForm
+#from django.contrib.auth import login,authenticate, logout
 
 def test(request, *args, **kwargs):
     return HttpResponse('OK')
 
 def allq(request):
-    all_question = Question.objects.filter(is_published=True)
+    all_questions = Question.objects.all()
     all_questions = all_question.order_by('-id')
     page = request.GET.get('page', 1)
 #    limit = request.GET.get('limit', 10)
+#    [paginator,page] = pagepag(request, questions, url)
     paginator = Paginator(all_questions, 10)
     paginator.baseurl = '/?page='
     page = paginator.page(page)
-    return HttpResponse('NOK')
-#    return render(request, 'qa/questions.html', {
-#        'question' : page.object_list,
-#        'paginator': paginator, 'page' = page,
-#         })
+#    try:
+#        page = paginator.page(page)
+#    except EmptyPage:
+#        page = paginator.page(paginator.num_pages) 
+#    return HttpResponse('NOK')
+    return render(request, 'qa/questions.html', {
+        'question' : all_questions,
+        'paginator': paginator, 'page' = page,
+        'user': request.user,
+         })
 
 def popular(request):
-    pops=Question.objects.order_by('rating')
+    pops = Question.objects.order_by('rating')
     page = request.GET.get('page', 1)
     paginator = Paginator(pops, 10)
     paginator.baseurl = '/?page='
-    page = paginator.page(page)
-    return HttpResponse('POK')
-#    return render(request, 'qa/question.html', {
-#        'question' : page.object_list,
-#        'paginator': paginator, 'page' = page,
-#         })
-    
+#    paginator.baseurl = '/popular/?page='
+    try:
+        page = paginator.page(page)
+    except EmptyPage:
+        page = paginator.page(paginator.num_pages)
+    return render(request, 'qa/question.html', {
+        'question' : pops,
+        'paginator': paginator, 'page' = page,
+         })
+   
 def show_question(request, q_id):
     try:
-        question = Question.objects.get(id = q_id)
+        id_question = int(q_id)
+    except ValueError:
+        raise Http404
+    try:
+        question = Question.objects.get(id = id_question)
+#        question = get_object_or_404(Question, pk=q_id)
     except Question.DoesNotExist:
         raise Http404
     return render(request, 'qa/question.html', {
         'question' : question,
-#       'answer' : answer.question_set.all(),
-        'title' : question.title,
-        'text' : question.text,
+        'answer' :  Answer.objects.filter(id=id_question).order_by('-added_ad')[:],
+#        'newanswer': AnswerForm({'question': int(id_question), 'author': request.user}),
+#        'title' : question.title,
+#        'text' : question.text,
         })
 
 def question_add(request):
