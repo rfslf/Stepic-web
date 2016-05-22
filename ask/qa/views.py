@@ -1,4 +1,4 @@
-from django.http import HttpResponse, Http404, , HttpResponseRedirect
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_GET
 from django.core.paginator import Paginator
@@ -26,7 +26,7 @@ def allq(request):
 #    return HttpResponse('NOK')
     return render(request, 'qa/questions.html', {
         'question' : all_questions,
-        'paginator': paginator, 'page' = page,
+        'paginator': paginator, 'page': page,
         'user': request.user,
          })
 
@@ -42,7 +42,7 @@ def popular(request):
         page = paginator.page(paginator.num_pages)
     return render(request, 'qa/question.html', {
         'question' : pops,
-        'paginator': paginator, 'page' = page,
+        'paginator': paginator, 'page': page,
          })
    
 def show_question(request, q_id):
