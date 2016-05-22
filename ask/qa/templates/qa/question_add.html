@@ -3,12 +3,3 @@
 	<table>{{form.as_table}}</table>
         <input type="submit" value="OK">
 </form>
-<form method="post" action="/answer/">
-                {% csrf_token %}
-		{% for field in form%}
-                  <div>
-                    {{field}}
-                  </div> 
-                {% endfor %}
-        <input type="submit" value="OK">
-</form>
