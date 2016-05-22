@@ -68,16 +68,25 @@ def show_question(request, q_id):
         'text' : question.text,
         })
 
-def question_add(request):
-    if request.method == "POST":
-        form = AskForm(request.POST)
-    #   form = AskForm(initial={'question': question_id})
-        if form.is_valid():
-            form.save(request.user)
-            return HttpResponseRedirect('/question/123')
-    else:
-        form = AskForm()
-    return render(request, 'qa/question_add.html', {'form': form})
+def askform(request):
+	url = '/question/'
+	if request.method == "POST":
+		if request.POST['author']:
+			author = request.POST['author']
+		else:
+			author = request.user
+		form = AskForm({
+			'title': request.POST['title'],
+			'text': request.POST['text'],
+			'author': author,
+		},)
+		if form.is_valid():
+			url = url + str( form.save() ) + '/'
+		return HttpResponseRedirect(url)
+	form = AskForm({'author': request.user}) 
+	return render(request, 'qa/question_add.html',{
+		'form': form,
+	},)
 
 def post_answer(request):
     if request.method == 'POST':
