@@ -77,3 +77,12 @@ def question_add(request):
     else:
         form = AskForm()
     return render(request, 'qa/question_add.html', {'form': form})
+
+def post_answer(request):
+    if request.method == 'POST':
+        form = forms.AnswerForm(request.POST)
+        if form.is_valid():
+            form.save(request.user)
+            return HttpResponseRedirect('/question/123')
+    else:
+        form = AnswerForm()
