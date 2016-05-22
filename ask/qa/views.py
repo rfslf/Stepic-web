@@ -56,9 +56,11 @@ def show_question(request, q_id):
 #        question = get_object_or_404(Question, pk=q_id)
     except Question.DoesNotExist:
         raise Http404
+    answers = models.Answer.objects.filter(question=question)
     return render(request, 'qa/question.html', {
         'question' : question,
-        'answer' :  Answer.objects.filter(id=id_question).order_by('-added_ad')[:],
+#        'answers' :  Answer.objects.filter(id=id_question).order_by('-added_ad')[:],
+        'answers' : answers,
 #        'newanswer': AnswerForm({'question': int(id_question), 'author': request.user}),
         'title' : question.title,
         'text' : question.text,
