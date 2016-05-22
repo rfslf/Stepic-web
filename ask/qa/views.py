@@ -6,7 +6,8 @@ from . import models
 from . import forms
 from models import Question, Answer
 #from functions import pagepag
-#from forms import AskForm, AnswerForm, SignupForm, LoginForm
+from forms import AskForm, AnswerForm
+#, SignupForm, LoginForm
 #from django.contrib.auth import login,authenticate, logout
 
 def test(request, *args, **kwargs):
