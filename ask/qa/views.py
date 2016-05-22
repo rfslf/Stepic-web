@@ -11,8 +11,8 @@ def test(request, *args, **kwargs):
     return HttpResponse('OK')
 
 def allq(request):
-    all_questions = Question.objects.all()
-    all_questions = all_question.order_by('-id')
+#    all_questions = Question.objects.all()
+    all_questions = Question.objects.order_by('-id')
     page = request.GET.get('page', 1)
 #    limit = request.GET.get('limit', 10)
 #    [paginator,page] = pagepag(request, questions, url)
