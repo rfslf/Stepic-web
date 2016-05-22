@@ -2,6 +2,7 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_GET
 from django.core.paginator import Paginator
+from . import models
 from models import Question, Answer
 #from functions import pagepag
 #from forms import AskForm, AnswerForm, SignupForm, LoginForm
