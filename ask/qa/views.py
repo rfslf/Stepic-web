@@ -40,7 +40,7 @@ def popular(request):
         page = paginator.page(page)
     except EmptyPage:
         page = paginator.page(paginator.num_pages)
-    return render(request, 'qa/question.html', {
+    return render(request, 'qa/questions.html', {
         'question' : pops,
         'paginator': paginator, 'page': page,
          })
@@ -60,7 +60,7 @@ def show_question(request, q_id):
         'answer' :  Answer.objects.filter(id=id_question).order_by('-added_ad')[:],
 #        'newanswer': AnswerForm({'question': int(id_question), 'author': request.user}),
         'title' : question.title,
-#        'text' : question.text,
+        'text' : question.text,
         })
 
 def question_add(request):
