@@ -31,7 +31,7 @@ def allq(request):
          })
 
 def popular(request):
-    pops = Question.objects.order_by('rating')
+    pops = Question.objects.order_by('-rating')
     page = request.GET.get('page', 1)
     paginator = Paginator(pops, 10)
     paginator.baseurl = '/?page='
