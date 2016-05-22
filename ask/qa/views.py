@@ -68,7 +68,7 @@ def show_question(request, q_id):
         'text' : question.text,
         })
 
-def askform(request):
+def question_add(request):
 	url = '/question/'
 	if request.method == "POST":
 		if request.POST['author']:
