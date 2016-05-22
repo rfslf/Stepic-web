@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_GET
 from django.core.paginator import Paginator
 from . import models
+from . import forms
 from models import Question, Answer
 #from functions import pagepag
 #from forms import AskForm, AnswerForm, SignupForm, LoginForm
@@ -71,9 +72,8 @@ def question_add(request):
         form = AskForm(request.POST)
     #   form = AskForm(initial={'question': question_id})
         if form.is_valid():
-            post = form.save()
-            url = post.get_url()
-            return HttpResponseRedirect(url)
+            form.save(request.user)
+            return HttpResponseRedirect('/question/123')
     else:
         form = AskForm()
     return render(request, 'qa/question_add.html', {'form': form})
