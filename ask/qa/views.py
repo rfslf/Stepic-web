@@ -2,12 +2,11 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_GET
 from django.core.paginator import Paginator
-from . import models
-from . import forms
-from models import Question, Answer
-#from functions import pagepag
-from forms import AskForm, AnswerForm
+from .models import Question, Answer
+from .forms import AskForm, AnswerForm
 #, SignupForm, LoginForm
+
+#from functions import pagepag
 #from django.contrib.auth import login,authenticate, logout
 
 def test(request, *args, **kwargs):
@@ -104,7 +103,7 @@ def question_add(request):
 
 def post_answer(request):
     if request.method == 'POST':
-        form = forms.AnswerForm(request.POST)
+        form = AnswerForm(request.POST)
         if form.is_valid():
             form.save(request.user)
             return HttpResponseRedirect('/question/123')
