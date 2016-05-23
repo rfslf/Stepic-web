@@ -69,7 +69,7 @@ def show_question(request, q_id):
         })
 
 def question_add(request):
-url = '/question/'
+    url = '/question/'
 	if request.method == "POST":
 		if request.POST['author']:
 			author = request.POST['author']
