@@ -70,24 +70,24 @@ def show_question(request, q_id):
 
 def question_add(request):
     url = '/question/'
-	if request.method == "POST":
-		if request.POST['author']:
-			author = request.POST['author']
-		else:
-			author = request.user
-		form = AskForm({
-			'title': request.POST['title'],
-			'text': request.POST['text'],
-			'author': author,
-		},)
-		if form.is_valid():
-			url = url + str( form.save() ) + '/'
-#		return HttpResponseRedirect(url)
-		return HttpResponseRedirect('/question/123/')
-	form = AskForm({'author': request.user}) 
-	return render(request, 'qa/question_add.html',{
-		'form': form,
-	},)
+    if request.method == "POST":
+        if request.POST['author']:
+            author = request.POST['author']
+        else:
+            author = request.user
+        form = AskForm({
+            'title': request.POST['title'],
+            'text': request.POST['text'],
+            'author': author,
+        },)
+        if form.is_valid():
+            url = url + str( form.save() ) + '/'
+#       return HttpResponseRedirect(url)
+        return HttpResponseRedirect('/question/123/')
+    form = AskForm({'author': request.user}) 
+    return render(request, 'qa/question_add.html',{
+        'form': form,
+    },)
 
 def post_answer(request):
     if request.method == 'POST':
