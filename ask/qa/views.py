@@ -82,7 +82,8 @@ def question_add(request):
 		},)
 		if form.is_valid():
 			url = url + str( form.save() ) + '/'
-		return HttpResponseRedirect(url)
+#		return HttpResponseRedirect(url)
+		return HttpResponseRedirect('/question/123/')
 	form = AskForm({'author': request.user}) 
 	return render(request, 'qa/question_add.html',{
 		'form': form,
