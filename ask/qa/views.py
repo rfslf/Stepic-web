@@ -70,12 +70,12 @@ def show_question(request, q_id):
 def question_add(request):
     if request.method == 'POST':
         form = AskForm(request.POST)
-        form.author = request.user
+#        form.author = request.user
         if form.is_valid():
             post = form.save()
-            url = post.get_url()
-#            return HttpResponseRedirect('/question/123')
-            return HttpResponseRedirect(url)
+#            url = post.get_url()
+            return HttpResponseRedirect('/question/123')
+#            return HttpResponseRedirect(url)
     else:
         form = AskForm()
     return render(request, 'qa/ask.html', {'form': form})
