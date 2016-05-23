@@ -78,7 +78,7 @@ def question_add(request):
             return HttpResponseRedirect(url)
     else:
         form = AskForm()
-    return render(request, 'qa/question_add.html', {'form': form})
+    return render(request, 'qa/ask.html', {'form': form})
 
 #def question_add(request):
 #    url = '/question/'
@@ -97,7 +97,7 @@ def question_add(request):
 #        return HttpResponseRedirect(url)
 #        return HttpResponseRedirect('/question/123/')
 #    form = AskForm({'author': request.user}) 
-#    return render(request, 'qa/question_add.html',{
+#    return render(request, 'qa/ask.html',{
 #        'form': form,
 #    },)
 
