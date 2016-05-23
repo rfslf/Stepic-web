@@ -1,5 +1,14 @@
-<form method="post" action="/ask/">
-        {% csrf_token %}
-	<table>{{form.as_table}}</table>
-        <input type="submit" value="OK">
+<form class="form-horizontal" method="post" action="/ask/">
+    {% csrf_token %}
+    <fieldset>
+        {% for field in form %}
+            <div class="control-group {% if field.errors %}has-error{% endif %}">
+                <label class="control-label">{{ field.label }}</label>
+                <div class="controls">{{ field }}</div>
+            </div>
+        {% endfor %}
+    </fieldset>
+    <div class="form-actions">
+        <button type="submit" class="btn-primary">SAVE</button>
+    </div>
 </form>
