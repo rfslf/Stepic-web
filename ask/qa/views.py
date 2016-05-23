@@ -73,7 +73,7 @@ def question_add(request):
         form.author = request.user
         if form.is_valid():
             post = form.save()
-            url = post._get_url()
+            url = post.get_url()
 #            return HttpResponseRedirect('/question/123')
             return HttpResponseRedirect(url)
     else:
